@@ -23,18 +23,17 @@ class KaraokeLocal():
             for dato in datos:
                 if datos[dato][:7] == 'http://':
                     file_name = datos[dato].split('/')[-1]
-                    web = urllib.request.urlretrieve(datos[dato], \
-                        file_name)
+                    web = urllib.request.urlretrieve(datos[dato], file_name)
                     print(web)
 
     def __str__(self):
-        for datos in self.misdatos: # datos es cada diccionario por separado
+        for datos in self.misdatos:  # datos es cada diccionario por separado
             tag = datos['etiqueta']
             linea = tag + '\t'
-            for dato in datos:    #dato es cada atributo del diccionario
+            for dato in datos:   # dato es cada atributo del diccionario
                 if datos[dato] != tag:
                     valor = datos[dato]
-                    linea = linea + '\t' + dato + '=' + '"' + valor + '"' 
+                    linea = linea + '\t' + dato + '=' + '"' + valor + '"'
             print(linea)
             linea = ''
 
@@ -45,8 +44,6 @@ class KaraokeLocal():
 
 
 if __name__ == "__main__":
-
-
 
     try:
         fichero = sys.argv[1]
@@ -61,5 +58,3 @@ if __name__ == "__main__":
     KLocal.do_local()
     KLocal.to_json('local')
     KLocal.__str__()
-
-
