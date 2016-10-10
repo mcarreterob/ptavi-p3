@@ -25,12 +25,10 @@ def salida_datos(misdatos):
 def smil_to_json(misdatos):
     smilfile = sys.argv[1]
     jsonfile = open(smilfile.split('.')[0] + '.json', 'w')
-    jsoncontent = json.dump(misdatos)
+    jsoncontent = json.dumps(misdatos)
     jsonfile.write(jsoncontent)
 
 
-
-        
 if __name__ == "__main__":
     try:
         fichero = sys.argv[1]
@@ -38,5 +36,7 @@ if __name__ == "__main__":
         sys.exit('Usage: python3 karaoke.py file.smil')
 
     parser.parse(open(fichero))
+    smil_to_json(misdatos)
+    salida_datos(misdatos)
 
 
