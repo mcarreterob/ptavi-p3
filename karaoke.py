@@ -6,15 +6,22 @@ from xml.sax.handler import ContentHandler
 from smallsmilhandler import SmallSMILHandler
 import sys
 import json
+import urllib.request
 
 parser = make_parser()
 SSHandler = SmallSMILHandler()
 parser.setContentHandler(SSHandler)
 misdatos = SSHandler.get_tags()
 
+def do_local(misdatos):
+    for datos in misdatos:
+        for dato in datos:
+            if datos[dato][:7] == 'http://':
+                file_name = datos[dato].split('/')[-1]
+                web = urllib.request.urlretrieve(datos[dato], file_name)
+                print(web)
 
-
-def salida_datos(misdatos):
+def __str__(misdatos):
     for datos in misdatos:    # datos es cada diccionario por separado
         linea = datos['etiqueta']    # inicializo la salida a la etiqueta
         del datos['etiqueta']
@@ -24,7 +31,7 @@ def salida_datos(misdatos):
         print(linea)
         linea = ''
 
-def smil_to_json(misdatos):
+def to_json(misdatos):
     smilfile = sys.argv[1]
     jsonfile = open(smilfile.split('.')[0] + '.json', 'w')
     jsoncontent = json.dumps(misdatos)
@@ -39,6 +46,7 @@ if __name__ == "__main__":
 
     parser.parse(open(fichero))
     smil_to_json(misdatos)
-    salida_datos(misdatos)
+    #__str__(misdatos)
+    download(misdatos)
 
 
