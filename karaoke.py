@@ -12,6 +12,8 @@ SSHandler = SmallSMILHandler()
 parser.setContentHandler(SSHandler)
 misdatos = SSHandler.get_tags()
 
+
+
 def salida_datos(misdatos):
     for datos in misdatos:    # datos es cada diccionario por separado
         linea = datos['etiqueta']    # inicializo la salida a la etiqueta
