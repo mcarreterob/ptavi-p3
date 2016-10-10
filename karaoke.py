@@ -48,7 +48,7 @@ if __name__ == "__main__":
     try:
         fichero = sys.argv[1]
     except IndexError:
-        sys.exit('Usage: python3 karaoke.py file.smil')   
+        sys.exit('Usage: python3 karaoke.py file.smil')
     KLocal = KaraokeLocal()
     KLocal.init(fichero)
     KLocal.__str__()
